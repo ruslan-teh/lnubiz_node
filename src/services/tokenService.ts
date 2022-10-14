@@ -2,19 +2,20 @@ import jwt from 'jsonwebtoken';
 
 import { DeleteResult } from 'typeorm';
 import { IToken, ITokenPair, IUserPayload } from '../interfaces';
-import { tokenRepository } from '../repositories/token/tokenRepository';
+import { tokenRepository } from '../repositories';
+import { config } from '../config';
 
 class TokenService {
     public createTokenPair(payload: IUserPayload): ITokenPair {
         const accessToken = jwt.sign(
             payload,
-            'secret_word',
-            { expiresIn: '10s' },
+            config.SECRET_ACCESS_KEY as string,
+            { expiresIn: config.EXPIRES_IN_ACCESS },
         );
         const refreshToken = jwt.sign(
             payload,
-            'secret_word',
-            { expiresIn: '12h' },
+            config.SECRET_REFRESH_KEY as string,
+            { expiresIn: config.EXPIRES_IN_REFRESH },
         );
         return {
             accessToken,
@@ -35,10 +36,14 @@ class TokenService {
     }
 
     verifyToken(authToken:string, tokenType = 'access'): IUserPayload {
-        let secretWord = 'secret_word';
+        let secretWord = config.SECRET_ACCESS_KEY as string;
 
         if (tokenType === 'refresh') {
-            secretWord = 'secret_word';
+            secretWord = config.SECRET_REFRESH_KEY as string;
+        }
+
+        if (tokenType === 'action'){
+            secretWord = config.SECRET_ACTION_KEY as string;
         }
 
         return jwt.verify(authToken, secretWord) as IUserPayload;
@@ -52,6 +57,10 @@ class TokenService {
         }
 
         return tokenRepository.deleteTokenPairByParams({ });
+    }
+
+    public generateActionToken(payload: IUserPayload): string {
+        return jwt.sign(payload, config.SECRET_ACTION_KEY as string, { expiresIn: config.EXPIRES_IN_ACTION });
     }
 }
 

@@ -1,10 +1,8 @@
 import { NextFunction, Request, Response } from 'express';
 import { IRequestExtended, ITokenPair, IUser } from '../interfaces';
-import { userService } from '../services';
-import { tokenService } from '../services/tokenService';
-import { tokenRepository } from '../repositories/token/tokenRepository';
-// import { emailService } from '../services/emailService';
-// import { emailActionEnum } from '../config/enums';
+import {emailService, tokenService, userService} from '../services';
+import { emailActionEnum } from '../config';
+import { tokenRepository } from '../repositories';
 
 class AuthController {
     public async registration(req: Request, res: Response, next: NextFunction): Promise<Response<IUser>> {
@@ -17,12 +15,14 @@ class AuthController {
     }
 
     public async login(req: IRequestExtended, res: Response, next: NextFunction): Promise<Response<ITokenPair>> {
+        console.log("loginloginloginloginloginloginloginloginloginloginloginlogin");
+        console.log(req.user);
+        console.log("loginloginloginloginloginloginloginloginloginloginloginlogin");
         try {
             const { id, password: hashPassword } = req.user as IUser;
             const { password, email } = req.body;
-            console.log(req.body);
 
-            // await emailService.sendMail(email, emailActionEnum.WELCOME, { userName: 'Ruslan' });
+            await emailService.sendMail(email, emailActionEnum.WELCOME, { userName: 'Ruslan' });
             await userService.compareUserPassword(password, hashPassword);
 
             const { accessToken, refreshToken } = await tokenService.createTokenPair({
@@ -76,6 +76,10 @@ class AuthController {
         } catch (e) {
             throw new Error(`${e}`);
         }
+    }
+
+    public async googleClientId(req: Request, res: Response, next: NextFunction): Promise<any> {
+        console.log(req)
     }
 }
 

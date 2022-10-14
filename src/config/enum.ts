@@ -1,3 +1,4 @@
 export enum emailActionEnum {
-    WELCOME
+    WELCOME,
+    FORGOTPASSWORD
 }

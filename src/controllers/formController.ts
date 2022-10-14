@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from 'express';
-import { IForm } from '../interfaces/formInterface';
-import { formRepositories } from '../repositories/formRepositories';
+import { IForm } from '../interfaces';
+import { formRepositories } from '../repositories';
 
 class FormController {
     public async createForm(req: Request, res:Response, next: NextFunction): Promise<Response<IForm>> {

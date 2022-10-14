@@ -2,22 +2,23 @@ import {
     Column, Entity,
 } from 'typeorm';
 import { CommonFields } from './commonFields';
+import { config } from '../config';
 
-@Entity({ name: 'Users', database: 'lnubiz' })
+@Entity({ name: 'Users', database: config.MYSQL_DATABASE_NAME })
 export class User extends CommonFields {
     @Column({
         type: 'varchar',
         width: 255,
         nullable: false,
     })
-    firstName: string;
+        firstName: string;
 
     @Column({
         type: 'varchar',
         width: 255,
         nullable: false,
     })
-    lastName: string;
+        lastName: string;
 
     @Column({
         type: 'varchar',
@@ -25,12 +26,12 @@ export class User extends CommonFields {
         nullable: false,
         unique: true,
     })
-    email: string;
+        email: string;
 
     @Column({
         type: 'varchar',
         width: 255,
         nullable: false,
     })
-    password: string;
+        password: string;
 }

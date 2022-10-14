@@ -1,6 +1,6 @@
 import { DeleteResult, getManager, UpdateResult } from 'typeorm';
-import {IForm} from "../../interfaces";
-import {Forms} from "../../entity";
+import { IForm } from '../../interfaces';
+import { Forms } from '../../entity';
 
 class FormRepositories {
     async createForm(form: IForm): Promise<IForm> {

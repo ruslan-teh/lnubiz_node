@@ -5,4 +5,8 @@ export const emailInfo = {
         subject: 'Welcome',
         templateName: 'welcome',
     },
+    [emailActionEnum.FORGOTPASSWORD]: {
+        subject: 'ForgotPassword',
+        templateName: 'forgotPassword',
+    },
 };

@@ -1,25 +1,30 @@
+// @ts-ignore
+global.rootDir = __dirname;
+
+import passport from "passport";
 import 'reflect-metadata';
 import express from 'express';
-
 import { createConnection } from 'typeorm';
-// import cors from 'cors';
 
+import cors from 'cors';
 import { apiRouter } from './routers';
-
-// @ts-ignore
-// global.rootDir = __dirname;
+import { config } from './config';
 
 const app = express();
 
-// app.use(cors({
-//     origin: '*',
-//     credentials: true,
-//     optionsSuccessStatus: 200,
-//     allowedHeaders: '*',
-//     methods: '*',
-// }));
+
+app.use(cors({
+    origin: '*',
+    credentials: true,
+    optionsSuccessStatus: 200,
+    allowedHeaders: '*',
+    methods: '*',
+}));
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.use(apiRouter);
 
@@ -33,7 +38,10 @@ app.use('*', (err, req, res, next) => {
         });
 });
 
-app.listen(5000, async () => {
+
+const { PORT } = config;
+
+app.listen(PORT, async () => {
     console.log('server has started!!!');
     try {
         const connection = await createConnection();

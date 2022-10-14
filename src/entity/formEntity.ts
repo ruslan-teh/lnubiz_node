@@ -2,130 +2,131 @@ import {
     Column, Entity, JoinColumn, OneToOne,
 } from 'typeorm';
 import { CommonFields } from './commonFields';
-import { User } from './userEntity';
+import { User } from './userEntyti';
+import { config } from '../config';
 
-@Entity({ name: 'Forms', database: 'lnubiz' })
+@Entity({ name: 'Forms', database: config.MYSQL_DATABASE_NAME })
 export class Forms extends CommonFields {
     @Column({
         type: 'int',
         nullable: false,
     })
-    userId: number;
+        userId: number;
 
     @Column({
         type: 'datetime',
         nullable: false,
     })
-    date: Date;
+        date: Date;
 
     @Column({
         type: 'int',
         nullable: false,
     })
-    status: number;
+        status: number;
 
     @Column({
         type: 'varchar',
         width: 255,
         nullable: false,
     })
-    fullName: string;
+        fullName: string;
 
     @Column({
         type: 'varchar',
         width: 255,
         nullable: false,
     })
-    fullTimePosition: string;
+        fullTimePosition: string;
 
     @Column({
         type: 'varchar',
         width: 255,
         nullable: false,
     })
-    partTimePosition: string;
+        partTimePosition: string;
 
     @Column({
         type: 'boolean',
         nullable: false,
     })
-    isAbroadTrip: boolean;
+        isAbroadTrip: boolean;
 
     @Column({
         type: 'varchar',
         width: 255,
         nullable: false,
     })
-    purpose: string;
+        purpose: string;
 
     @Column({
         type: 'int',
         nullable: false,
     })
-    retentionType: number;
+        retentionType: number;
 
     @Column({
         type: 'varchar',
         width: 255,
         nullable: false,
     })
-    city: string;
+        city: string;
 
     @Column({
         type: 'varchar',
         width: 255,
         nullable: false,
     })
-    country: string;
+        country: string;
 
     @Column({
         type: 'varchar',
         width: 255,
         nullable: false,
     })
-    institution: string;
+        institution: string;
 
     @Column({
         type: 'date',
         nullable: false,
     })
-    startDate: Date;
+        startDate: Date;
 
     @Column({
         type: 'date',
         nullable: false,
     })
-    endDate: Date;
+        endDate: Date;
 
     @Column({
         type: 'varchar',
         width: 255,
         nullable: false,
     })
-    route: string;
+        route: string;
 
     @Column({
         type: 'varchar',
         width: 255,
         nullable: false,
     })
-    transport: string;
+        transport: string;
 
     @Column({
         type: 'varchar',
         width: 255,
         nullable: false,
     })
-    expensesPayment: string;
+        expensesPayment: string;
 
     @Column({
         type: 'varchar',
         width: 255,
         nullable: false,
     })
-    tripReason: string;
+        tripReason: string;
 
     @OneToOne(() => User)
     @JoinColumn({ name: 'userId' })
-    user: User;
+        user: User;
 }

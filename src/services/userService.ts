@@ -2,6 +2,8 @@ import bcrypt from 'bcrypt';
 
 import { IUser } from '../interfaces';
 import { userRepository } from '../repositories';
+import { config } from '../config';
+import {UpdateResult} from "typeorm";
 
 class UserService {
     public async createUser(body: any): Promise<IUser> {
@@ -21,6 +23,13 @@ class UserService {
         return userRepository.findUserByEmail(email);
     }
 
+    public async updateUser(id: number, obj: Partial<IUser>): Promise<UpdateResult | undefined> {
+        if (obj.password){
+            obj.password = await this._hashPassword(obj.password);
+        }
+        return userRepository.updateUserByParams(id, obj);
+    }
+
     public async compareUserPassword(password: string, hash: string): Promise<void | string> {
         const isPasswordUnique = bcrypt.compare(password, hash);
 
@@ -30,7 +39,7 @@ class UserService {
     }
 
     private async _hashPassword(password: string): Promise<string> {
-        return bcrypt.hash(password, 10);
+        return bcrypt.hash(password, Number(config.USER_SALT_ROUNDS));
     }
 }
 

@@ -1,4 +1,4 @@
-import { DeleteResult, getManager, Repository } from 'typeorm';
+import {DeleteResult, getManager, Repository, UpdateResult} from 'typeorm';
 
 import { IUser } from '../../interfaces';
 import { User } from '../../entity';
@@ -26,6 +26,10 @@ class UserRepository extends Repository<User> {
             .where('user.id = :id', { id })
             .andWhere('user.deletedAt is NULL')
             .getOne();
+    }
+
+    updateUserByParams(id: number, user: Partial<IUser>): Promise<UpdateResult> {
+        return getManager().getRepository(User).update({ id }, user);
     }
 }
 
