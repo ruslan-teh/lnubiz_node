@@ -1,9 +1,11 @@
-import {Column, Entity, JoinColumn, OneToOne} from 'typeorm';
+import {
+    Column, Entity, JoinColumn, OneToOne,
+} from 'typeorm';
 import { CommonFields } from './commonFields';
 import { User } from './userEntyti';
-import {actionTokenEnum, config} from "../config";
+import { actionTokenEnum, config } from '../config';
 
-@Entity({name: 'ActionTokens', database: config.MYSQL_DATABASE_NAME})
+@Entity({ name: 'ActionTokens', database: config.MYSQL_DATABASE_NAME })
 export class ActionTokenEntity extends CommonFields {
     @Column({
         type: 'varchar',

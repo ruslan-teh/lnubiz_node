@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from 'express';
 import { IRequestExtended, ITokenPair, IUser } from '../interfaces';
-import {emailService, tokenService, userService} from '../services';
+import { emailService, tokenService, userService } from '../services';
 import { emailActionEnum } from '../config';
 import { tokenRepository } from '../repositories';
 
@@ -15,9 +15,9 @@ class AuthController {
     }
 
     public async login(req: IRequestExtended, res: Response, next: NextFunction): Promise<Response<ITokenPair>> {
-        console.log("loginloginloginloginloginloginloginloginloginloginloginlogin");
+        console.log('loginloginloginloginloginloginloginloginloginloginloginlogin');
         console.log(req.user);
-        console.log("loginloginloginloginloginloginloginloginloginloginloginlogin");
+        console.log('loginloginloginloginloginloginloginloginloginloginloginlogin');
         try {
             const { id, password: hashPassword } = req.user as IUser;
             const { password, email } = req.body;
@@ -79,7 +79,7 @@ class AuthController {
     }
 
     public async googleClientId(req: Request, res: Response, next: NextFunction): Promise<any> {
-        console.log(req)
+        console.log(req);
     }
 }
 

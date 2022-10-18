@@ -42,7 +42,7 @@ class TokenService {
             secretWord = config.SECRET_REFRESH_KEY as string;
         }
 
-        if (tokenType === 'action'){
+        if (tokenType === 'action') {
             secretWord = config.SECRET_ACTION_KEY as string;
         }
 

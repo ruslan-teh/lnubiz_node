@@ -1,6 +1,6 @@
 import { ICommonFields } from './commonFields';
 import { IUserPayload } from './userInterface';
-import {actionTokenEnum} from "../config";
+import { actionTokenEnum } from '../config';
 
 export interface IToken extends ICommonFields{
     accessToken: string,

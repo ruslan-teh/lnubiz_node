@@ -37,7 +37,7 @@ class EmailService {
     async forgotPassword(userMail: string, action: emailActionEnum, context = {}): Promise<SentMessageInfo> {
         const { subject, templateName } = emailInfo[action];
 
-        Object.assign(context, { resetPasswordURL: 'localhost:3000/resetPassword'});
+        Object.assign(context, { resetPasswordURL: 'localhost:3000/resetPassword' });
 
         const html = await this.templateRender.render(templateName, context);
 

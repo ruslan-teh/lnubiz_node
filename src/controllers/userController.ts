@@ -1,8 +1,8 @@
 import { NextFunction, Request, Response } from 'express';
-import {IRequestExtended, IUser} from '../interfaces';
-import {emailService, tokenService, userService} from '../services';
+import { IRequestExtended, IUser } from '../interfaces';
+import { emailService, tokenService, userService } from '../services';
 import { emailActionEnum, actionTokenEnum } from '../config';
-import {actionTokenRepository} from "../repositories/token/actionTokenRepository";
+import { actionTokenRepository } from '../repositories/token/actionTokenRepository';
 
 class UserController {
     public async getUserById(req: Request, res: Response, next: NextFunction): Promise<Response<IUser>> {
@@ -18,10 +18,10 @@ class UserController {
     public async forgotPassword(req: IRequestExtended, res: Response, next: NextFunction): Promise<any> {
         const { id, email } = req.user as IUser;
 
-        const actionToken = tokenService.generateActionToken({userId: id, userEmail: email});
-        await actionTokenRepository.createActionToken({actionToken, userId: id, type: actionTokenEnum.forgotPassword})
+        const actionToken = tokenService.generateActionToken({ userId: id, userEmail: email });
+        await actionTokenRepository.createActionToken({ actionToken, userId: id, type: actionTokenEnum.forgotPassword });
 
-        await emailService.forgotPassword(`${email}`, emailActionEnum.FORGOTPASSWORD, {actionToken});
+        await emailService.forgotPassword(`${email}`, emailActionEnum.FORGOTPASSWORD, { actionToken });
 
         return res.json('send');
     }
@@ -32,10 +32,10 @@ class UserController {
         const { token } = req.query;
 
         await userService.updateUser(id, { password });
-        await actionTokenRepository.deleteTokenByParams({actionToken: token as string});
+        await actionTokenRepository.deleteTokenByParams({ actionToken: token as string });
 
         return res.json({
-            status: 'success'
+            status: 'success',
         });
     }
 }

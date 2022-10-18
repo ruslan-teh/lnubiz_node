@@ -1,6 +1,6 @@
-import {IActionToken, IActionTokenForSave} from "../../interfaces";
-import {getManager} from "typeorm";
-import {ActionTokenEntity} from "../../entity/actionTokenEntity";
+import { getManager } from 'typeorm';
+import { IActionToken, IActionTokenForSave } from '../../interfaces';
+import { ActionTokenEntity } from '../../entity/actionTokenEntity';
 
 class ActionTokenRepository {
     public async createActionToken(actionToken: IActionTokenForSave): Promise<IActionToken> {

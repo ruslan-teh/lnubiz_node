@@ -1,9 +1,9 @@
 import bcrypt from 'bcrypt';
 
+import { UpdateResult } from 'typeorm';
 import { IUser } from '../interfaces';
 import { userRepository } from '../repositories';
 import { config } from '../config';
-import {UpdateResult} from "typeorm";
 
 class UserService {
     public async createUser(body: any): Promise<IUser> {
@@ -24,7 +24,7 @@ class UserService {
     }
 
     public async updateUser(id: number, obj: Partial<IUser>): Promise<UpdateResult | undefined> {
-        if (obj.password){
+        if (obj.password) {
             obj.password = await this._hashPassword(obj.password);
         }
         return userRepository.updateUserByParams(id, obj);

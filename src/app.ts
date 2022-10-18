@@ -1,7 +1,4 @@
-// @ts-ignore
-global.rootDir = __dirname;
-
-import passport from "passport";
+import passport from 'passport';
 import 'reflect-metadata';
 import express from 'express';
 import { createConnection } from 'typeorm';
@@ -10,8 +7,10 @@ import cors from 'cors';
 import { apiRouter } from './routers';
 import { config } from './config';
 
-const app = express();
+// @ts-ignore
+global.rootDir = __dirname;
 
+const app = express();
 
 app.use(cors({
     origin: '*',
@@ -19,6 +18,7 @@ app.use(cors({
     optionsSuccessStatus: 200,
     allowedHeaders: '*',
     methods: '*',
+    exposedHeaders: '*'
 }));
 
 app.use(express.json());
@@ -37,7 +37,6 @@ app.use('*', (err, req, res, next) => {
             data: err.data,
         });
 });
-
 
 const { PORT } = config;
 

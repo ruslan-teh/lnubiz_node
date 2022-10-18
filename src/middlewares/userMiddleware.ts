@@ -4,9 +4,9 @@ import { userRepository } from '../repositories';
 
 class UserMiddleware {
     public async checkIsUserExist(req: IRequestExtended, res: Response, next: NextFunction) {
-        console.log('UserMiddlewareUserMiddlewareUserMiddlewareUserMiddlewareUserMiddlewareUserMiddleware')
-        console.log(req)
-        console.log('UserMiddlewareUserMiddlewareUserMiddlewareUserMiddlewareUserMiddlewareUserMiddleware')
+        console.log('UserMiddlewareUserMiddlewareUserMiddlewareUserMiddlewareUserMiddlewareUserMiddleware');
+        console.log(req);
+        console.log('UserMiddlewareUserMiddlewareUserMiddlewareUserMiddlewareUserMiddlewareUserMiddleware');
         try {
             const { email } = req.body;
 

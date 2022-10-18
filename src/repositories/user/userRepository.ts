@@ -1,4 +1,6 @@
-import {DeleteResult, getManager, Repository, UpdateResult} from 'typeorm';
+import {
+    DeleteResult, getManager, Repository, UpdateResult,
+} from 'typeorm';
 
 import { IUser } from '../../interfaces';
 import { User } from '../../entity';
