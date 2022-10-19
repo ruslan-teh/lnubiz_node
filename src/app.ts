@@ -13,6 +13,7 @@ global.rootDir = __dirname;
 const app = express();
 dotenv.config()
 app.use(cors({
+    exposedHeaders: '*',
     origin: '*',
     credentials: true,
     optionsSuccessStatus: 200,
