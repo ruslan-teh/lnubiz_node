@@ -3,13 +3,13 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 export const config = {
-    PORT: process.env.PORT,
+    PORT: process.env.PORT || 5000,
 
-    MYSQL_DATABASE_NAME: process.env.MYSQL_DATABASE_NAME,
+    MYSQL_DATABASE_NAME: process.env.MYSQL_DATABASE_NAME || "heroku_649a2a8ce7efaff",
 
-    SECRET_ACCESS_KEY: process.env.SECRET_ACCESS_KEY,
-    SECRET_REFRESH_KEY: process.env.SECRET_REFRESH_KEY,
-    SECRET_ACTION_KEY: process.env.SECRET_ACTION_KEY,
+    SECRET_ACCESS_KEY: process.env.SECRET_ACCESS_KEY || 'secret',
+    SECRET_REFRESH_KEY: process.env.SECRET_REFRESH_KEY || 'secret',
+    SECRET_ACTION_KEY: process.env.SECRET_ACTION_KEY || 'secret',
 
     EXPIRES_IN_ACCESS: process.env.EXPIRES_IN_ACCESS,
     EXPIRES_IN_REFRESH: process.env.EXPIRES_IN_REFRESH,
