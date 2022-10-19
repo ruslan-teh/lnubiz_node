@@ -13,6 +13,7 @@ global.rootDir = __dirname;
 const app = express();
 dotenv.config()
 app.use(cors({
+    origin: 'http://lnubiz.herokuapp.com',
     credentials: true,
     optionsSuccessStatus: 200,
     allowedHeaders: '*',
