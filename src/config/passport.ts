@@ -5,7 +5,7 @@ import { config } from './config';
 const GoogleStrategy = passportGoogle.Strategy;
 
 passport.use(
-    new GoogleStrategy({
+    <passport.Strategy>new GoogleStrategy({
         clientID: config.GOOGLE_CLIENT_ID as string,
         clientSecret: config.GOOGLE_CLIENT_SECRET as string,
         callbackURL: '/auth/google/redirect',
