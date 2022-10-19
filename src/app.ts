@@ -2,7 +2,6 @@ import passport from 'passport';
 import 'reflect-metadata';
 import express from 'express';
 import { createConnection } from 'typeorm';
-import dotenv from "dotenv";
 import cors from 'cors';
 import { apiRouter } from './routers';
 import { config } from './config';
@@ -11,7 +10,6 @@ import { config } from './config';
 global.rootDir = __dirname;
 
 const app = express();
-dotenv.config()
 app.use(cors({
     origin: 'http://lnubiz.herokuapp.com',
     credentials: true,

@@ -3,7 +3,7 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 export const config = {
-    PORT: process.env.PORT || 5000,
+    PORT: process.env.PORT || 3306,
 
     MYSQL_DATABASE_NAME: process.env.MYSQL_DATABASE_NAME || "heroku_649a2a8ce7efaff",
 
